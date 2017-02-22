@@ -44,6 +44,10 @@ public class MainActivity extends AppCompatActivity {
 //        testRetrofitNewThread();
     }
 
+    /**
+     * Particular TV show was clicked
+     * @param position Show's position in the list
+     */
     @OnItemClick(R.id.list_of_shows)
     void onListItemClick(int position) {
         Log.d("Debug", "position: " + position);
@@ -52,7 +56,9 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-
+    /**
+     * Load TV Shows clicked
+     */
     @OnClick(R.id.load_shows_button)
     public void loadShows() {
         loadShowsButton.setEnabled(false);
@@ -60,6 +66,9 @@ public class MainActivity extends AppCompatActivity {
         getTvShows();
     }
 
+    /**
+     * Downloads TV show info
+     */
     private void getTvShows() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://api.tvmaze.com/")
@@ -74,16 +83,20 @@ public class MainActivity extends AppCompatActivity {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(tvShow -> {
+                    // Display information on screen
                     populateShowList(tvShow);
                 });
     }
 
+    /**
+     * Displays shows on screen
+     * @param tvShows List with TV show information
+     */
     public void populateShowList(List<TvShow> tvShows) {
         this.tvShows = tvShows;
         tvShows.forEach(show->Log.e("Show: " + show.getId(), show.getName()));
         ArrayAdapter adapter = new ArrayAdapter<TvShow>(this, R.layout.list_item, tvShows.toArray(new TvShow[0]));
         showsView.setAdapter(adapter);
-
     }
 
     private void testRetrofitNewThread() {
