@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    android:orientation="vertical"
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingBottom="50dp"
+        android:text="@string/show_detail_header"
+        android:textSize="30dp" />
+
+    <LinearLayout
+        style="@style/TextViewGroup">
+
+        <TextView
+            style="@style/ShowDetailDescriptionTextStyle"
+            android:text="@string/show_name"
+            />
+        <TextView
+            android:id="@+id/detail_name"
+            style="@style/ShowDetailValueTextStyle"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/TextViewGroup">
+
+        <TextView
+            style="@style/ShowDetailDescriptionTextStyle"
+            android:text="@string/show_url" />
+
+        <TextView
+            android:id="@+id/detail_url"
+            style="@style/ShowDetailValueTextStyle"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/TextViewGroup">
+
+        <TextView
+            style="@style/ShowDetailDescriptionTextStyle"
+            android:text="@string/show_type" />
+
+        <TextView
+            android:id="@+id/detail_type"
+            style="@style/ShowDetailValueTextStyle"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/TextViewGroup">
+
+        <TextView
+            style="@style/ShowDetailDescriptionTextStyle"
+            android:text="@string/show_language" />
+
+        <TextView
+            android:id="@+id/detail_language"
+            style="@style/ShowDetailValueTextStyle"
+            />
+    </LinearLayout>
+
+</LinearLayout>
+
+
+
+
+
+
+
+

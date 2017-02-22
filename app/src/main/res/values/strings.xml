@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">TestApp</string>
+    <string name="load_shows">Load TV Shows</string>
+    <string name="show_detail_header">Show Details</string>
+
+    <string name="show_name">Show name: </string>
+    <string name="show_url">Show URL: </string>
+    <string name="show_type">Show type: </string>
+    <string name="show_language">Show language: </string>
+</resources>
