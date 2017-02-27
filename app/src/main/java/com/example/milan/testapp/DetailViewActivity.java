@@ -2,11 +2,14 @@ package com.example.milan.testapp;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import json.ShowDetails;
+import com.example.milan.testapp.json.ShowDetails;
 
 /**
  * Created by Milan on 2/21/2017.
@@ -29,7 +32,7 @@ public class DetailViewActivity extends AppCompatActivity{
     }
 
     private void fillFields() {
-        details = (ShowDetails)getIntent().getSerializableExtra("SHOW_INFORMATION");
+        details = (ShowDetails)getIntent().getParcelableExtra("SHOW_INFORMATION");
         name.setText(details.getName());
         URL.setText(details.getUrl());
         type.setText(details.getType());

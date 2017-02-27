@@ -18,7 +18,7 @@
         android:id="@+id/load_shows_button"
         />
 
-    <ListView
+    <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/list_of_shows"

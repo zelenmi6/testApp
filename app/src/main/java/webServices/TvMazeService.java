@@ -3,7 +3,7 @@ package webServices;
 import java.util.List;
 
 import io.reactivex.Observable;
-import json.TvShow;
+import com.example.milan.testapp.json.TvShow;
 
 import retrofit2.*;
 import retrofit2.http.GET;

@@ -3,11 +3,14 @@ package com.example.milan.testapp;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
+import com.example.milan.testapp.json.ShowDetails;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 import java.io.IOException;
@@ -20,7 +23,7 @@ import butterknife.OnItemClick;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
-import json.TvShow;
+import com.example.milan.testapp.json.TvShow;
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;
@@ -30,9 +33,9 @@ import webServices.TvMazeService;
 
 public class MainActivity extends AppCompatActivity {
 
-    @BindView(R.id.list_of_shows) ListView showsView;
+    @BindView(R.id.list_of_shows) RecyclerView showsView;
     @BindView(R.id.load_shows_button) Button loadShowsButton;
-    List<TvShow> tvShows = null;
+//    List<TvShow> tvShows = null;
 
 
     @Override
@@ -44,17 +47,17 @@ public class MainActivity extends AppCompatActivity {
 //        testRetrofitNewThread();
     }
 
-    /**
-     * Particular TV show was clicked
-     * @param position Show's position in the list
-     */
-    @OnItemClick(R.id.list_of_shows)
-    void onListItemClick(int position) {
-        Log.d("Debug", "position: " + position);
-        Intent intent = new Intent(this, DetailViewActivity.class);
-        intent.putExtra("SHOW_INFORMATION", tvShows.get(position).get_embedded().getShowDetails());
-        startActivity(intent);
-    }
+//    /**
+//     * Particular TV show was clicked
+//     * @param position Show's position in the list
+//     */
+//    @OnItemClick(R.id.list_of_shows)
+//    void onListItemClick(int position) {
+//        Log.d("Debug", "position: " + position);
+//        Intent intent = new Intent(this, DetailViewActivity.class);
+//        intent.putExtra("SHOW_INFORMATION", tvShows.get(position).get_embedded().getShowDetails());
+//        startActivity(intent);
+//    }
 
     /**
      * Load TV Shows clicked
@@ -62,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
     @OnClick(R.id.load_shows_button)
     public void loadShows() {
         loadShowsButton.setEnabled(false);
-        tvShows = null;
+//        tvShows = null;
         getTvShows();
     }
 
@@ -93,10 +96,14 @@ public class MainActivity extends AppCompatActivity {
      * @param tvShows List with TV show information
      */
     public void populateShowList(List<TvShow> tvShows) {
-        this.tvShows = tvShows;
-        tvShows.forEach(show->Log.e("Show: " + show.getId(), show.getName()));
-        ArrayAdapter adapter = new ArrayAdapter<TvShow>(this, R.layout.list_item, tvShows.toArray(new TvShow[0]));
+        showsView.setHasFixedSize(true);
+        showsView.setLayoutManager(new LinearLayoutManager(this));
+        TVShowAdapter adapter = new TVShowAdapter(this, tvShows);
         showsView.setAdapter(adapter);
+//        this.tvShows = tvShows;
+//        tvShows.forEach(show->Log.e("Show: " + show.getId(), show.getName()));
+//        ArrayAdapter adapter = new ArrayAdapter<TvShow>(this, R.layout.list_item, tvShows.toArray(new TvShow[0]));
+//        showsView.setAdapter(adapter);
     }
 
     private void testRetrofitNewThread() {
